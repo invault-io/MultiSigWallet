@@ -12,11 +12,44 @@
 4. 主流硬件钱包支持(Trezor,Ledger).
 5. 交易日志.
 
+## 测试
+A test suite is included through the use of the truffle framework, providing coverage for methods in the wallet.
+
+### Installation
+
+NodeJS 8.9.0 is recommended.
+
+```shell
+npm install
+```
+
+This installs truffle and an Ethereum test RPC client.
+
+### Wallet Solidity Contract
+
+Find it at [contracts/IvtMultiSigWallet.sol]
+
+### Running tests
+
+The truffle framework will depend on the Web3 interface to a local Web3 Ethereum JSON-RPC. If you've followed the above steps, run the following to start testrpc. 
+
+```shell
+npm run truffle-testrpc
+```
+
+You should verify that you are not already running geth, as this will cause the tests to run against that interface. 
+
+In a **separate terminal window**, run the following command to initiate the test suite, which will run against the RPC:
+
+```shell
+npm run truffle-test
+```
+
 
 ## 贡献
 
 欢迎以github的形式对本项目贡献问题和改进.
-当提交请求时，请务必考虑修复单个bug或新增一个功能，在提交前请确保您已充分测试并提供相应的测试数据。
+当提交push请求时，请务必考虑修复单个bug或新增一个功能，在提交前请确保您已充分测试并提供相应的测试数据。
 
 
 ## 免责声明

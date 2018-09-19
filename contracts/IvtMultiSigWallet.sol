@@ -12,6 +12,7 @@ contract IvtMultiSigWallet {
 
     mapping (address => bool) private signers;
     mapping (uint256 => bool) private transactions;
+    mapping (address => bool) private signedAddresses;
 
     address private owner;
     uint8 private required;
@@ -100,7 +101,7 @@ contract IvtMultiSigWallet {
 
     function verifySignatures(bytes32 _msgHash, uint8[] _v, bytes32[] _r,bytes32[] _s) view private{
         uint8 hasConfirmed = 0;
-        address[] memory  tempAddresses = new address[](20);
+        address[] memory  tempAddresses = new address[](_v.length);
         address tempAddress;
 
         for (uint8 i = 0; i < _v.length; i++){
@@ -112,7 +113,7 @@ contract IvtMultiSigWallet {
             hasConfirmed++;
         }
         
-        for (uint8 j = 0; j < tempAddresses.length; j++){
+        for (uint8 j = 0; j < _v.length; j++){
             delete (signedAddresses[tempAddresses[j]]);
         }
 
